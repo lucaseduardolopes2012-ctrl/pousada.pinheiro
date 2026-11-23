@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pousada dos Pinheiros · Guaraqueçaba</title>
+<meta name="description" content="Pousada com piscina de frente para a baía, no centro de Guaraqueçaba (PR). Veja os quartos livres e peça sua reserva.">
+<meta name="theme-color" content="#b8452e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 100'%3E%3Cpath fill='%23b8452e' d='M30 3 L45 33 Q30 28 15 33 Z M30 19 L50 55 Q30 49 10 55 Z M30 38 L55 80 Q30 73 5 80 Z M27 80 H33 V97 H27 Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<!-- céu e sol ficam fixos atrás da página: o sol desce e o céu escurece conforme o hóspede rola -->
+<div id="ceu" aria-hidden="true"></div>
+<div id="sol" aria-hidden="true"></div>
+
+<header class="topo" id="topo">
+  <div class="dentro">
+    <a class="marca" href="#inicio"><i data-desenho="pinheiro"></i><span>Pousada dos Pinheiros</span></a>
+    <nav>
+      <a class="l" href="#fotos">Fotos</a>
+      <a class="l" href="#quartos">Quartos</a>
+      <a class="l" href="#saber">Bom saber</a>
+      <a class="btn btn--cheio" href="#bilhete">Pedir reserva</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="voo voo--ceu" aria-hidden="true"></div>
+    <div class="dentro hero-grade">
+      <div class="hero-txt">
+        <p class="onde"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Centro, Guaraqueçaba · PR</p>
+        <h1 class="nome" aria-label="Pousada dos Pinheiros"><span aria-hidden="true">
+          <span class="l1"><span class="pal"><span style="--i:0">Pousada</span></span></span>
+          <span class="l2"><span class="pal"><span style="--i:1">dos</span></span> <span class="pal it"><span style="--i:2">Pinheiros</span></span></span>
+        </span></h1>
+        <p class="sobre" id="sobre">Piscina de frente para a baía, varanda e o pôr do sol à beira-mar, no centro de Guaraqueçaba.</p>
+        <ul class="fatos" id="fatos"></ul>
+        <div class="contato" id="contato"></div>
+      </div>
+
+      <div class="hero-visual">
+        <button type="button" class="arco" data-foto="0" aria-label="Ver as fotos da pousada em tela cheia"><img src="img/1.jpg" alt="Piscina da Pousada dos Pinheiros com a baía ao fundo" fetchpriority="high"></button>
+        <svg class="selo" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs><path id="circ" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+          <text font-size="8.6" letter-spacing=".5"><textPath href="#circ" textLength="283" lengthAdjust="spacing">GUARAQUEÇABA • PISCINA • BAÍA • PÔR DO SOL • </textPath></text>
+          <g transform="translate(43 43) scale(.85)" class="selo-sol"><circle cx="20" cy="20" r="7.5"/><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 4v5M20 31v5M4 20h5M31 20h5M8.7 8.7l3.5 3.5M27.8 27.8l3.5 3.5M31.3 8.7l-3.5 3.5M12.2 27.8l-3.5 3.5"/></g></g>
+        </svg>
+      </div>
+
+      <!-- bilhete de hospedagem: datas, hóspedes e o canhoto com as noites e o botão -->
+      <form class="bilhete" id="bilhete" novalidate aria-label="Buscar quartos livres">
+        <div class="papel">
+          <div class="corpo">
+            <div class="b-topo"><span>Bilhete de hospedagem</span><span>Centro, Guaraqueçaba</span></div>
+            <div class="rota">
+              <label class="data"><span>Chegada</span><input type="date" id="b-in" required></label>
+              <svg class="trilha" viewBox="0 0 200 64" aria-hidden="true" focusable="false"><path class="trilha-linha" d="M6 56 Q100 -16 194 56"/><circle class="ponta" cx="6" cy="56" r="3.2"/><circle class="ponta" cx="194" cy="56" r="3.2"/><circle class="sol-rota" id="sol-rota" r="7.5" cx="100" cy="20"/></svg>
+              <label class="data"><span>Saída</span><input type="date" id="b-out" required></label>
+            </div>
+            <div class="gente">
+              <label class="conta"><span>Adultos</span><span class="contador"><button type="button" data-conta="adultos" data-d="-1" aria-label="Menos um adulto">−</button><output id="o-adultos">2</output><button type="button" data-conta="adultos" data-d="1" aria-label="Mais um adulto">+</button></span></label>
+              <label class="conta"><span>Crianças</span><span class="contador"><button type="button" data-conta="criancas" data-d="-1" aria-label="Menos uma criança">−</button><output id="o-criancas">0</output><button type="button" data-conta="criancas" data-d="1" aria-label="Mais uma criança">+</button></span></label>
+              <p class="noites" id="b-noites" aria-live="polite"></p>
+              <svg class="codigo" id="codigo" viewBox="0 0 150 30" aria-hidden="true" focusable="false"></svg>
+            </div>
+          </div>
+          <div class="canhoto">
+            <span class="cn" aria-hidden="true"><b id="n-noites">1</b><i id="n-rotulo">noite</i></span>
+            <button class="btn btn--cheio" type="submit" id="b-ver">Ver quartos livres</button>
+            <p class="erro" id="b-erro" role="alert" hidden></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="fotos" id="fotos" aria-label="Fotos da pousada">
+    <div class="faixa">
+      <button type="button" class="foto" data-foto="1" aria-label="Ver foto 2 em tela cheia"><img src="img/2.jpg" alt="Pôr do sol sobre a piscina e a baía" loading="lazy"></button>
+      <button type="button" class="foto" data-foto="2" aria-label="Ver foto 3 em tela cheia"><img src="img/3.jpg" alt="A casa vermelha vista do pátio da piscina" loading="lazy"></button>
+      <button type="button" class="foto" data-foto="3" aria-label="Ver foto 4 em tela cheia"><img src="img/4.jpg" alt="O pátio e a pousada ao fim da tarde" loading="lazy"></button>
+    </div>
+  </section>
+
+  <section class="folha" id="quartos">
+    <div class="dentro">
+      <div class="cab"><h2 class="titulo">Quartos</h2><p id="q-legenda" aria-live="polite">Escolha as datas no bilhete para ver o que está livre e quanto fica a estadia.</p></div>
+      <div class="lista-q" id="lista-q"></div>
+    </div>
+  </section>
+
+  <section class="ficha" id="ficha">
+    <div class="dentro" id="ficha-dentro"></div>
+  </section>
+
+  <section class="folha" id="saber">
+    <div class="dentro">
+      <div class="cab"><h2 class="titulo">Bom saber</h2><span class="cab-arte" data-desenho="pinheiro" aria-hidden="true"></span></div>
+      <dl class="saber" id="saber-lista"></dl>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="voo voo--pinhal" aria-hidden="true"></div>
+  <svg class="pinhal" id="pinhal" viewBox="0 0 1470 130" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"></svg>
+  <div class="mar">
+    <div class="ondas" aria-hidden="true"><svg viewBox="0 0 2400 60" preserveAspectRatio="none"><path id="onda-1"/></svg><svg viewBox="0 0 2400 60" preserveAspectRatio="none"><path id="onda-2"/></svg></div>
+    <div class="dentro rod">
+      <span class="rod-nome">Pousada dos Pinheiros<small>Av. Dr. Agrícola Fonseca, 51 · Centro · Guaraqueçaba, PR</small></span>
+      <span class="rod-links" id="rod-links"><a href="#quartos">Quartos</a><a id="link-acompanhar" href="#">Acompanhar pedido</a><a id="link-privacidade" href="#">Aviso de Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+
+<dialog class="visor" id="visor" aria-label="Fotos da Pousada dos Pinheiros">
+  <img id="visor-img" alt="">
+  <p class="visor-conta" id="visor-conta" aria-live="polite"></p>
+  <button type="button" class="vb fecha" data-visor="fechar" aria-label="Fechar">×</button>
+  <button type="button" class="vb ant" data-visor="-1" aria-label="Foto anterior">‹</button>
+  <button type="button" class="vb prox" data-visor="1" aria-label="Próxima foto">›</button>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
